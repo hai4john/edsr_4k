@@ -1,0 +1,62 @@
+2019-10-16-06:08:26
+
+debug: False
+template: .
+n_threads: 6
+cpu: False
+n_GPUs: 1
+seed: 1
+dir_data: ../../datasets/
+dir_demo: ../test
+data_train: ['Tencent']
+data_test: ['Tencent']
+data_range: 1-69000/69001-70000
+ext: sep_reset
+scale: [4]
+patch_size: 192
+rgb_range: 255
+n_colors: 3
+chop: False
+no_augment: False
+model: EDSR
+act: relu
+pre_train: 
+extend: .
+n_resblocks: 32
+n_feats: 256
+res_scale: 0.1
+shift_mean: True
+dilation: False
+precision: single
+G0: 64
+RDNkSize: 3
+RDNconfig: B
+n_resgroups: 10
+reduction: 16
+reset: True
+test_every: 1000
+epochs: 100
+batch_size: 30
+split_batch: 1
+self_ensemble: False
+test_only: False
+gan_k: 1
+lr: 0.0001
+decay: 200
+gamma: 0.5
+optimizer: ADAM
+momentum: 0.9
+betas: (0.9, 0.999)
+epsilon: 1e-08
+weight_decay: 0
+gclip: 0
+loss: 1*L1
+skip_threshold: 100000000.0
+save: edsrtencent_x4
+load: 
+resume: 0
+save_models: False
+print_every: 20
+save_results: False
+save_gt: False
+
