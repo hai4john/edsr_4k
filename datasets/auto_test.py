@@ -39,7 +39,7 @@ for video in os.listdir(path_x4_video):
     process_edsr.wait()
 
     # 3. 编码超分后png文件为视频文件
-    cmd_encoder = 'ffmpeg -i ' + path_x4_sr_png + '/target%4d_x4_SR.png  -vcodec libx265 -pix_fmt yuv422p -crf 10 ' + path_x4_sr_video + '/' + video
+    cmd_encoder = 'ffmpeg -r 24000/1001 -i ' + path_x4_sr_png + '/target%4d_x4_SR.png  -vcodec libx265 -pix_fmt yuv422p -crf 10 ' + path_x4_sr_video + '/' + video
     print(cmd_encoder)
     process_encoder = subprocess.Popen(cmd_encoder, shell=True)
     process_encoder.wait()
