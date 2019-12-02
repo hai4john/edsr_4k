@@ -1,7 +1,8 @@
 from model import common
-
+from model.unet_model import UNet
 import torch.nn as nn
-
+import torch
+import torch.nn.functional as F
 url = {
     'r16f64x2': 'https://cv.snu.ac.kr/research/EDSR/models/edsr_baseline_x2-1bc95232.pt',
     'r16f64x3': 'https://cv.snu.ac.kr/research/EDSR/models/edsr_baseline_x3-abf2a44e.pt',
@@ -51,16 +52,20 @@ class EDSR(nn.Module):
         self.head = nn.Sequential(*m_head)
         self.body = nn.Sequential(*m_body)
         self.tail = nn.Sequential(*m_tail)
+        self.unet = UNet(args.n_colors, args.n_colors)
 
     def forward(self, x):
-        x = self.sub_mean(x)
+        #x = self.sub_mean(x)
         x = self.head(x)
 
         res = self.body(x)
         res += x
 
-        x = self.tail(res)
-        x = self.add_mean(x)
+        x = F.relu(self.tail(res))
+
+        x = torch.sigmoid(self.unet(x))
+        #x = self.add_mean(x)
+
 
         return x 
 
