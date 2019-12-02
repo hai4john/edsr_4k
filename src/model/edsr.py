@@ -63,7 +63,7 @@ class EDSR(nn.Module):
 
         x = F.relu(self.tail(res))
 
-        x = torch.sigmoid(self.unet(x))
+        x = torch.sigmoid(self.unet(x))*255
         #x = self.add_mean(x)
 
 
