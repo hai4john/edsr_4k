@@ -47,6 +47,6 @@ tf-estimator-nightly==1.14.0.dev2019060501
 torch==1.1.0
 torchvision==0.3.0
 tqdm==4.28.1
-urllib3==1.24.3
+urllib3==1.26.5
 Werkzeug==0.15.5
 wrapt
